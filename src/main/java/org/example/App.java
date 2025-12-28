@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 /**
  * Hello world!
  *
@@ -21,10 +23,7 @@ public class App {
        try {
            session.beginTransaction();
 
-           Person person = session.getReference(Person.class, 1);
-           System.out.println(person.getName());
-           System.out.println(person.getAge());
-
+            session.createQuery("update Person set name='Papa' where age < 20").executeUpdate();
 
            session.getTransaction().commit();
        }finally {
